@@ -1,0 +1,57 @@
+#!/bin/bash
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+function run_hook() {
+  local path="$OPENSHIFT_REPO_DIR/.openshift/action_hooks/$1"
+  if [ -f "$path" -a -x "$path" ]
+  then
+    "$path"
+  else
+    return 0
+  fi
+}
+
+function start() {
+    echo "Starting DIY cartridge"
+    run_hook start
+}
+
+function stop() {
+    echo "Stopping DIY cartridge"
+    run_hook stop
+}
+
+function restart() {
+    stop
+    start
+}
+
+function status() {
+   if output=$(curl http://$OPENSHIFT_MONGOX_IP:$OPENSHIFT_MONGOX_PORT 2>&1 )
+   then
+      client_result "Application is running"
+   else
+      client_result "Application is either stopped or inaccessible"
+   fi
+}
+
+function reload() {
+    client_result "Reloading DIY cart"
+    restart
+}
+
+function tidy() {
+  client_message "Emptying diy logs in dir: $OPENSHIFT_LOG_DIR"
+  shopt -s dotglob
+  rm -rf $OPENSHIFT_LOG_DIR/diy.log*
+}
+
+case "$1" in
+  start)     start ;;
+  stop)      stop ;;
+  restart)   restart ;;
+  status)    status ;;
+  reload)    reload ;;
+  tidy)      tidy ;;
+  *)         exit 0
+esac
