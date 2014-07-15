@@ -2,7 +2,7 @@
 # The logic to start up your application should be put in this
 # script. The application will work only if it binds to
 # $OPENSHIFT_DIY_IP:8080
-nohup $OPENSHIFT_REPO_DIR/mongo/bin/mongod \
+nohup ${OPENSHIFT_MONGOX_DIR}/mongo/bin/mongod \
 --dbpath ${OPENSHIFT_MONGOX_DIR}/mongo/data/ \
 --smallfiles --port $OPENSHIFT_MONGOX_EXTRA_PORT \
 --bind_ip $OPENSHIFT_MONGOX_IP
