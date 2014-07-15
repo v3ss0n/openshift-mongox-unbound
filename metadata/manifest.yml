@@ -1,4 +1,4 @@
-Name: MongoX26
+Name: mongo26-extraport
 Cartridge-Short-Name: MONGOX
 Display-Name: "Mongod 2.6 extra port: Dedicated , Updated MongoDB 2.6.3 With Extra Port"
 Description: "Dedicated Mongo with Extra Port so it can be connected from any other application nodes, strip down to only 44MB of binary to MAXIMIZE disk space. Need to generate up to 400~ MB of Journal,though."
