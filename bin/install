@@ -2,11 +2,46 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-if [ ! -d $OPENSHIFT_DATA_DIR/bin ]; then
+case "$1" in
+  -v|--version)
+    version="$2"
+esac
 
-    cd $OPENSHIFT_TMP_DIR
-    wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.6.3.tgz
-    tar -xzf mongodb-linux-x86_64-2.6.3.tgz 
-    mv mongodb-linux-x86_64-2.6.3/bin/mongod  mongodb-linux-x86_64-2.6.3/bin/mongo $OPENSHIFT_MONGOX_DIR/mongo/bin
 
+if [[ "${OPENSHIFT_APP_NAME}" =~ ^[0-9] ]]; then
+  client_error ""
+  client_error "Unable to add MongoDB cartridge to your application because"
+  client_error "your application name (${OPENSHIFT_APP_NAME}) starts with number."
+  client_error ""
+  client_error "ERROR: MongoDB databases cannot start with number character."
+  client_error ""
+  exit 137
 fi
+
+# install premade mongodb2.6
+
+
+cd $OPENSHIFT_TMP_DIR
+wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.6.3.tgz
+tar -xzf mongodb-linux-x86_64-2.6.3.tgz 
+mv mongodb-linux-x86_64-2.6.3/bin/mongod  mongodb-linux-x86_64-2.6.3/bin/mongo $OPENSHIFT_MONGOX_DIR/mongo/bin
+
+
+# generate password and setup env vars
+echo 'Generating username and password'
+
+password=$(generate_password)
+
+echo "admin" > $OPENSHIFT_MONGOX_DIR/env/DB_USERNAME
+echo "$password" > $OPENSHIFT_MONGOX_DIR/env/DB_PASSWORD
+echo "mongodb://admin:$password@$OPENSHIFT_MONGOX_IP:$OPENSHIFT_MONGOX_EXTRA_PORT/" > $OPENSHIFT_MONGOX_DIR/env/OPENSHIFT_MONGOX_DB_URL
+
+client_result ""
+client_result "MongoDB 2.6.3 database added.  Please make note of these credentials:"
+client_result ""
+client_result "   Root User:     admin"
+client_result "   Root Password: $password"
+client_result "   Database Name: $OPENSHIFT_APP_NAME"
+client_result ""
+
+
