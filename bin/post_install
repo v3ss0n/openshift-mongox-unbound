@@ -1,18 +1,18 @@
-#!/bin/bash -e
+#!/bin/bash -x
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
-
-password=$OPENSHIFT_MONGOX_DB_PASSWORD
-# echo "use admin
-#       db.addUser(\"admin\", \"${password}\")
-#       db.auth(\"admin\", \"${password}\")
-#       db.system.users.find()
-#       use $OPENSHIFT_APP_NAME
-#       db.openshift.save({application: \"$OPENSHIFT_APP_NAME\", dbhost: \"$OPENSHIFT_MONGOX_IP\" })
-#       db.addUser(\"admin\", \"${password}\")
-#       exit
-#      "  | ${OPENSHIFT_MONGOX_DIR}/mongo/bin/mongo $OPENSHIFT_MONGOX_IP
-# rm -f /tmp/.dbshell
+echo $OPENSHIFT_MONGOX_IP
+password=$DB_PASSWORD
+echo "use admin
+      db.addUser(\"admin\", \"${password}\")
+      db.auth(\"admin\", \"${password}\")
+      db.system.users.find()
+      use $OPENSHIFT_APP_NAME
+      db.openshift.save({application: \"$OPENSHIFT_APP_NAME\", dbhost: \"$OPENSHIFT_MONGOX_IP\" })
+      db.addUser(\"admin\", \"${password}\")
+      exit
+     "  | ${OPENSHIFT_MONGOX_DIR}/mongo/bin/mongo $OPENSHIFT_MONGOX_IP
+rm -f /tmp/.dbshell
 
 cart_props "connection_url=mongodb://\$OPENSHIFT_MONGOX_IP:\$OPENSHIFT_MONGOX_EXTRA_PORT/"
 cart_props "username=admin"
