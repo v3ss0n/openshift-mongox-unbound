@@ -11,7 +11,7 @@ echo "use admin
       db.openshift.save({application: \"$OPENSHIFT_APP_NAME\", dbhost: \"$OPENSHIFT_MONGOX_IP\" })
       db.addUser(\"admin\", \"${password}\")
       exit
-     "  | mongo $OPENSHIFT_MONGOX_IP
+     "  | ${OPENSHIFT_MONGOX_DIR}/mongo/bin/mongo $OPENSHIFT_MONGOX_IP
 rm -f /tmp/.dbshell
 
 cart_props "connection_url=mongodb://\$OPENSHIFT_MONGOX_IP:\$OPENSHIFT_MONGOX_EXTRA_PORT/"
