@@ -3,7 +3,7 @@
 # script. The application will work only if it binds to
 # $OPENSHIFT_DIY_IP:8080
 nohup ${OPENSHIFT_MONGOX_DIR}/mongo/bin/mongod \
---dbpath ${OPENSHIFT_MONGOX_DIR}/mongo/data/ \
+--dbpath ${OPENSHIFT_DATA_DIR} \
 --smallfiles --port $OPENSHIFT_MONGOX_EXTRA_PORT \
 --bind_ip $OPENSHIFT_MONGOX_IP &
 
