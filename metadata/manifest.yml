@@ -98,4 +98,3 @@ Endpoints:
     Private-Port:      27017
     Public-Port-Name:  EXTRA_PROXY_PORT
     Protocols: [mongodb]
-    Options:   { "ssl_to_gear": true }

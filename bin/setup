@@ -12,5 +12,6 @@ mkdir -p ${OPENSHIFT_MONGOX_DIR}/run/
 mkdir -p ${OPENSHIFT_MONGOX_DIR}/{pid,socket}
 mkdir -p ${OPENSHIFT_MONGOX_DIR}/mongo/bin/
 mkdir -p ${OPENSHIFT_MONGOX_DIR}/mongo/data/
+chmod 755 ${OPENSHIFT_MONGOX_DIR}/mongo/data/
 client_result "Paths created"
 
