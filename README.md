@@ -1,2 +1,6 @@
 # OpenShift DIY Cartridge
-This cartridge is documented in the [Cartridge Guide](http://openshift.github.io/documentation/oo_cartridge_guide.html#diy).
+To create:
+ ```sh
+ rhc create-app db2 http://cartreflect-claytondev.rhcloud.com/reflect\?github\=v3ss0n/openshift-mongox-unbound
+ ```                                                                                                      ⏎
+
