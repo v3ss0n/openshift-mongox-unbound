@@ -19,8 +19,6 @@ if [[ "${OPENSHIFT_APP_NAME}" =~ ^[0-9] ]]; then
 fi
 
 # install premade mongodb2.6
-
-
 cd $OPENSHIFT_TMP_DIR
 wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.6.3.tgz
 tar -xzf mongodb-linux-x86_64-2.6.3.tgz 
@@ -34,7 +32,6 @@ password=$(generate_password)
 
 echo "admin" > $OPENSHIFT_MONGOX_DIR/env/DB_USERNAME
 echo "$password" > $OPENSHIFT_MONGOX_DIR/env/DB_PASSWORD
-echo "mongodb://admin:$password@$OPENSHIFT_MONGOX_IP:$OPENSHIFT_MONGOX_EXTRA_PORT/" > $OPENSHIFT_MONGOX_DIR/env/OPENSHIFT_MONGOX_DB_URL
 
 client_result ""
 client_result "MongoDB 2.6.3 database added.  Please make note of these credentials:"
