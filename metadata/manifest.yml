@@ -11,8 +11,6 @@ Vendor: 10gen
 Categories:
   - service
   - web_framework
-  - database
-  - nosql
 Website:
 Help-Topics:
   "Getting Started": https://www.openshift.com/community/videos/getting-started-with-diy-applications-on-openshift
@@ -26,7 +24,7 @@ Cart-Data:
   - Key: OPENSHIFT_REPO_DIR
     Type: environemnt
     Description: "Application root directory where application files reside. This directory is reset every time you do a git-push"
-  - Key: OPENSHIFT_IDY_PORT
+  - Key: OPENSHIFT_MONGOX_PORT
     Type: environment
     Description: "Internal port to which the web-framework binds to."
   - Key: OPENSHIFT_MONGOX_IP
@@ -70,10 +68,8 @@ Provides:
   - mongodb
   - mongodb-2.6
 Publishes:
-  publish-http-url:
-    Type: "NET_TCP:httpd-proxy-info"
-  publish-gear-endpoint:
-    Type: "NET_TCP:gear-endpoint-info"
+  publish-nosql-db-connection-info:
+    Type: ENV:NET_TCP:nosqldb:connection-info
 Subscribes:
   set-db-connection-info:
     Type: "ENV:NET_TCP:db:connection-info"
@@ -90,7 +86,7 @@ Group-Overrides:
 Endpoints:
   - Private-IP-Name:   IP
     Private-Port-Name: PORT
-    Private-Port:      8080
+    Private-Port:      28017
     Public-Port-Name:  PROXY_PORT
     Protocols: [http,ws]
   - Private-IP-Name:   IP
