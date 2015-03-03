@@ -42,7 +42,7 @@ client_result ""
 client_result "   Root User:     admin"
 client_result "   Root Password: $password"
 client_result "   Database Name: $OPENSHIFT_APP_NAME"
-client_result "   Connection URL: mongodb://admin:$password@$OPENSHIFT_MONGOX_IP:$OPENSHIFT_MONGOX_EXTRA_PORT/"
+client_result "   Connection URL: mongodb://admin:$password@$OPENSHIFT_GEAR_DNS:$OPENSHIFT_MONGOX_EXTRA_PROXY_PORT/"
 client_result ""
 
 
