@@ -83,7 +83,12 @@ Endpoints:
     Private-Port-Name: PORT
     Private-Port:      28017
     Public-Port-Name:  PROXY_PORT
-    Protocols: [http,ws]
+    Protocols: 
+      - http
+    Mappings:
+      - Frontend:      ""
+        Backend:       ""
+        Options:       { websocket: true }
   - Private-IP-Name:   IP
     Private-Port-Name: EXTRA_PORT
     Private-Port:      27017
