@@ -2,7 +2,7 @@ Name: mongo-extraport
 Cartridge-Short-Name: MONGOX
 Display-Name: "Mongod 2.6 extra port: Dedicated , Updated MongoDB 2.6.3 With Extra Port"
 Description: "Dedicated Mongo with Extra Port so it can be connected from any other application nodes, strip down to only 44MB of binary to MAXIMIZE disk space. Need to generate up to 400~ MB of Journal,though."
-Version: '0.1'
+Version: '0.6'
 License: "ASL 2.0"
 License-Url: http://www.apache.org/licenses/LICENSE-2.0.txt
 Cartridge-Version: 0.3.1
@@ -75,9 +75,9 @@ Publishes:
 Scaling:
   Min: 1
   Max: -1
-# Group-Overrides:
-#   - components:
-#     - web-proxy
+Group-Overrides:
+   - components:
+       - web-proxy
 Endpoints:
   - Private-IP-Name:   IP
     Private-Port-Name: PORT
@@ -88,7 +88,7 @@ Endpoints:
     Mappings:
       - Frontend:      ""
         Backend:       ""
-        Options:       { websocket: true }
+        Options:       { noproxy: true }
   - Private-IP-Name:   IP
     Private-Port-Name: EXTRA_PORT
     Private-Port:      27017
