@@ -12,7 +12,6 @@ echo "use admin
       exit
      "  | ${OPENSHIFT_MONGOX_DIR}/mongo/bin/mongo $OPENSHIFT_MONGOX_IP
 rm -f /tmp/.dbshell
-echo "mongodb://admin:$password@$OPENSHIFT_MONGOX_IP:$OPENSHIFT_MONGOX_EXTRA_PROXY_PORT/" > $OPENSHIFT_MONGOX_DIR/env/OPENSHIFT_MONGOX_DB_URL 
 cart_props "username=admin"
 cart_props "password=${password}"
 cart_props "database_name=$OPENSHIFT_APP_NAME"
